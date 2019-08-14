@@ -1,6 +1,7 @@
 const express = require("express") //import the express framework
 const mongoose = require("mongoose") //import mongoose to allow write JavaScript to interact with the Database
 const cors = require("cors")
+const compression = require("compression")
 
 const routes = require("./routes")
 
@@ -52,6 +53,7 @@ httpServer.use((req, res, next) => {
 // The io is inserted to avoid another import in the like controller.
 //the next parameter is called at the end to make the app keep running
 
+httpServer.use(compression()) //compress all routes to speed up the server
 httpServer.use(cors()) //cors allows the access of this server from anyone, including our react frontend
 httpServer.use(routes) //To use the routes created in another file
 
