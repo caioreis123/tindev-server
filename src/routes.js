@@ -12,12 +12,6 @@ const routes = express.Router() //uses express to create routes
 //the request can be in the header, which means the url like: http:localhost:3333?name=Caio
 //everything after the ? is the query that can be accessed by the req.query
 
-routes.get("/", (req, res) => {
-	return res.json({
-		message: `Hello my friend ${req.query.name}`,
-	})
-})
-
 //the post method is to create a new information.
 //the store method at the end of the controllers is to call the main function there
 

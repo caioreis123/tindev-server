@@ -27,14 +27,6 @@ io.on("connection", (socket) => {
 
 	connectedUsers[user] = socket.id
 	//will create a key value pair into the connectedUsers object
-
-	console.log(user, socket.id)
-	socket.on("some communication title", (message) => {
-		console.log(message)
-	})
-	socket.emit("backendSalut", {
-		message: "hello from the server",
-	})
 })
 //so every time someone connects using the websocket protocol we run this on function of the io api
 //to create the websocket connection. The first argument 'connection' is a built in  to listen to any connection.
@@ -63,9 +55,7 @@ httpServer.use((req, res, next) => {
 httpServer.use(cors()) //cors allows the access of this server from anyone, including our react frontend
 httpServer.use(routes) //To use the routes created in another file
 
-console.log("the server is running") //the console.log will be displayed in the terminal while the server is running
-
-fullServer.listen(3333) //sets the port to be listen to.
+fullServer.listen(process.env.PORT || 3333) //sets the port to be listen to.
 
 //To run the server type in terminal:
 //node src/server

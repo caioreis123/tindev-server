@@ -2,8 +2,6 @@ const Dev = require("../models/DevModel")
 
 module.exports = {
 	async store(req, res) {
-		console.log(`the one liking is: ${req.headers.user}`)
-		console.log(req.io, req.connectedUsers)
 		const loggedDev = await Dev.findById(req.headers.user)
 		//we edit the header in the insomnia app to include the user id
 		//we could get this info by the json request body too.
@@ -11,7 +9,6 @@ module.exports = {
 		//findById is a mongoose method that is going to look up in the database and return all the information of the
 		//user with this id based on the Dev model schema you wrote
 
-		console.log(`the liked id is: ${req.params.devId}`)
 		const targetDev = await Dev.findById(req.params.devId)
 		//req.params access values inside the route(the url address). In this case the id of the liked dev.
 		//example of url post request in insomnia: http://localhost:3333/devs/5d4b0b59afbb1b203c8c16ac/likes
@@ -22,7 +19,6 @@ module.exports = {
 
 		//the id is stored as _id in the database
 		if (targetDev.likes.includes(loggedDev._id)) {
-			console.log("DEU MATCH!")
 			const loggedSocket = req.connectedUsers[req.headers.user]
 			const targetSocket = req.connectedUsers[req.params.devId]
 
