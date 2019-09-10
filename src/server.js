@@ -38,11 +38,12 @@ io.on("connection", (socket) => {
 httpServer.use(express.json()) //Teaches express to read json.
 //This is mandatory since we are receiving json format in the body of the request of our routes.
 
-mongoose.connect("mongodb+srv://caio:rocketseat@cluster0-rhxod.mongodb.net/omnistack8?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://caio:rocketseat@cluster0-rhxod.mongodb.net/test?retryWrites=true&w=majority", {
 	useNewUrlParser: true,
 })
 //this url you get in the mongodb atlas and this mongoose method is going to connect this server to the database inside
 //of the atlas cluster you created and set up admin and whitelisted ip
+// mongodb+srv://caio:<password>@cluster0-rhxod.mongodb.net/test?retryWrites=true&w=majority
 
 httpServer.use((req, res, next) => {
 	req.io = io
